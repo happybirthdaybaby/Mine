@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Just For Your One Smile 🌙</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:#07070d;
+    color:#f4e9ed;
+    font-family:'Cormorant Garamond',serif;
+    overflow-x:hidden;
+}
+
+/* ⭐ STARS */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+    radial-gradient(circle,#ffffff 1px,transparent 1.5px),
+    radial-gradient(circle,#dcb9c8 1px,transparent 1.5px);
+    background-size:90px 90px,150px 150px;
+    background-position:20px 30px,70px 90px;
+    opacity:.25;
+    animation:stars 15s linear infinite;
+    z-index:0;
+}
+
+@keyframes stars{
+    from{transform:translateY(0)}
+    to{transform:translateY(90px)}
+}
+
+/* 🌙 MOON */
+
+.moon{
+    position:absolute;
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    background:#f5eadc;
+    right:-60px;
+    top:70px;
+    box-shadow:0 0 70px rgba(255,220,230,.25);
+}
+
+.moon::after{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    background:#07070d;
+    left:35px;
+    top:-12px;
+}
+
+/* 🔐 PASSWORD */
+
+#lockScreen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.lockContent{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:520px;
+}
+
+.smallTitle{
+    font-size:11px;
+    letter-spacing:4px;
+    color:#bca8af;
+}
+
+h1{
+    font-size:65px;
+    line-height:.85;
+    font-weight:400;
+    margin:25px 0;
+}
+
+.script{
+    font-family:'Great Vibes',cursive;
+    color:#e5bdca;
+}
+
+.for{
+    font-size:24px;
+}
+
+.hint{
+    color:#aaa0a5;
+    font-size:18px;
+    font-style:italic;
+}
+
+.passwordBox{
+    margin-top:30px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    background:rgba(20,18,27,.8);
+    backdrop-filter:blur(12px);
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.15);
+    background:#08080d;
+    color:white;
+    font-size:15px;
+    outline:none;
+    text-align:center;
+}
+
+button{
+    margin-top:12px;
+    padding:13px 25px;
+    border:none;
+    border-radius:12px;
+    background:#d9b8c2;
+    color:#181118;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#error{
+    color:#df899d;
+    min-height:20px;
+}
+
+/* 📖 SCRAPBOOK */
+
+#scrapbook{
+    display:none;
+    position:relative;
+    z-index:2;
+}
+
+.cover{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+}
+
+.cover h1{
+    font-size:75px;
+}
+
+.coverText{
+    font-size:22px;
+    color:#c6b7bd;
+}
+
+.date{
+    margin-top:15px;
+    letter-spacing:4px;
+    font-size:12px;
+    color:#a9959d;
+}
+
+.openButton{
+    margin-top:35px;
+    background:transparent;
+    color:#e7c6cf;
+    border:1px solid #e7c6cf66;
+}
+
+/* 📜 PAGES */
+
+.page{
+    width:90%;
+    max-width:850px;
+    margin:60px auto;
+    padding:45px 30px;
+    background:
+    linear-gradient(145deg,#17131c,#0c0b11);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+.chapter{
+    color:#cdaab5;
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+.page h2{
+    font-size:52px;
+    font-weight:400;
+    margin:15px 0;
+}
+
+.lead{
+    font-size:22px;
+    color:#bdb1b5;
+    line-height:1.4;
+}
+
+/* 🗓 TIMELINE */
+
+.memory{
+    margin-top:20px;
+    padding:20px;
+    border:1px dashed #d9b8c233;
+    border-radius:18px;
+    background:#111019;
+}
+
+.memoryDate{
+    color:#d3aeb9;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.memory h3{
+    font-size:25px;
+    margin:7px 0;
+    font-weight:500;
+}
+
+.memory p{
+    color:#a9a0a5;
+    font-size:17px;
+}
+
+/* 💌 NOTES */
+
+.note{
+    margin-top:15px;
+    padding:22px;
+    background:#111019;
+    border:1px dashed #d9b8c233;
+    border-radius:18px;
+    font-size:23px;
+}
+
+/* ✉️ LETTER */
+
+.letter{
+    font-size:24px;
+    line-height:1.7;
+    color:#cbbdc2;
+}
+
+/* 🌌 END */
+
+.end{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.end h2{
+    font-size:42px;
+    font-weight:400;
+}
+
+.end p{
+    color:#a99ca2;
+}
+
+/* 📱 MOBILE */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:48px;
+    }
+
+    .cover h1{
+        font-size:55px;
+    }
+
+    .page{
+        padding:35px 22px;
+    }
+
+    .page h2{
+        font-size:40px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .moon{
+        width:120px;
+        height:120px;
+        right:-50px;
+    }
+
+    .moon::after{
+        width:115px;
+        height:115px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 PASSWORD SCREEN -->
+
+<section id="lockScreen">
+
+<div class="moon"></div>
+
+<div class="lockContent">
+
+<div class="smallTitle">
+A PRIVATE LITTLE UNIVERSE
+</div>
+
+<h1>
+Just For<br>
+<span class="script">Your One Smile</span>
+</h1>
+
+<div class="for">
+for <b>Meraa Betu</b> ♡
+</div>
+
+<p class="hint">
+This little world is only for you.
+</p>
+
+<div class="passwordBox">
+
+<input
+id="password"
+type="password"
+placeholder="♡ enter the secret password ♡"
+>
+
+<button onclick="unlock()">
+UNLOCK OUR STORY ♡
+</button>
+
+<p id="error"></p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- 📖 SCRAPBOOK -->
+
+<section id="scrapbook">
+
+<div class="cover">
+
+<div class="smallTitle">
+OUR LITTLE UNIVERSE
+</div>
+
+<h1>
+Just For<br>
+<span class="script">Your One Smile</span>
+</h1>
+
+<p class="coverText">
+A little collection of everything that reminds me of you.
+</p>
+
+<div class="for">
+for Meraa Betu ♡
+</div>
+
+<div class="date">
+02 NOV 2023 — ∞
+</div>
+
+<button
+class="openButton"
+onclick="document.getElementById('story').scrollIntoView()">
+OPEN OUR STORY →
+</button>
+
+</div>
+
+
+<!-- 01 -->
+
+<div class="page" id="story">
+
+<div class="chapter">
+01 / ONCE UPON A TIME
+</div>
+
+<h2>
+It started with us.
+</h2>
+
+<p class="lead">
+Some stories are written. Ours just happened —
+and somehow became my favourite.
+</p>
+
+<div class="memory">
+
+<div class="memoryDate">
+02 NOV 2023
+</div>
+
+<h3>
+When our story began ♡
+</h3>
+
+<p>
+The day two people became a story.
+</p>
+
+</div>
+
+<div class="memory">
+
+<div class="memoryDate">
+02 JAN 2024
+</div>
+
+<h3>
+Us, officially.
+</h3>
+
+<p>
+The day everything became a little more ours.
+</p>
+
+</div>
+
+<div class="memory">
+
+<div class="memoryDate">
+02 JAN 2025
+</div>
+
+<h3>
+Our first meeting.
+</h3>
+
+<p>
+A memory worth keeping forever.
+</p>
+
+</div>
+
+<div class="memory">
+
+<div class="memoryDate">
+13 JUN 2025
+</div>
+
+<h3>
+Another little piece of us.
+</h3>
+
+<p>
+One more date I never want to forget.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- 02 -->
+
+<div class="page">
+
+<div class="chapter">
+02 / LITTLE PIECES OF US
+</div>
+
+</>
+<div class="caption">
+another little piece of our story
+</div>
+</>
+
+</>
+
+</div>
+
+
+<!-- 03 -->
+
+<div class="page">
+
+<div class="chapter">
+03 / THINGS I NEVER GET TIRED OF that's to make you happy forver and
+</div>
+
+<h2>
+Little things about you.
+</h2>
+
+<div class="note">
+♡ The way you make ordinary moments feel special.
+</div>
+
+<div class="note">
+♡ The memories that somehow become my favourite ones.
+</div>
+
+<div class="note">
+♡ The smile this entire scrapbook was made for. coz may it worth of... 
+</div>
+
+<div class="note">
+♡ The fact that somehow, you became my favourite person.
+</div>
+
+</div>
+
+
+<!-- 04 -->
+
+<div class="page">
+
+<div class="chapter">
+04 / IF YOU EVER FORGET
+</div>
+
+<h2>
+A letter for you.
+</h2>
+
+<div class="letter">
+
+<p>
+Meraa Betu,
+</p>
+
+<p>
+This page is going to hold everything
+I sometimes don't know how to say out loud.
+</p>
+
+<p>
+And if you ever forget how special you are to me,
+come back here.
+</p>
+
+<p>
+Because this entire little universe exists
+just for your one smile. ♡
+</p>
+
+</div>
+
+</div>
+
+
+<!-- END -->
+
+<div class="end">
+
+<p>
+UNTIL THE LAST PAGE 🌙
+</p>
+
+<h2>
+Made just for your one smile.
+</h2>
+
+<p>
+♡
+</p>
+
+</div>
+
+</section>
+
+
+<script>
+
+function unlock(){
+
+let password =
+document.getElementById("password").value
+.trim()
+.toLowerCase();
+
+if(password === "you are my good luck charm"){
+
+document.getElementById("lockScreen").style.display="none";
+
+document.getElementById("scrapbook").style.display="block";
+
+window.scrollTo(0,0);
+
+}else{
+
+document.getElementById("error").innerHTML=
+"That's not the secret password ♡";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
